@@ -4,7 +4,7 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.*;
 
-public classg Main {
+public class Main {
 
     public static void main(String[] args) {
 
