@@ -54,7 +54,7 @@ public class FoodController {
         return new ModelAndView(params, "form");
     }
 
-    public static ModelAndView renderAddNewRecipe(Request req, Response res) {
+    public static ModelAndView AddNewRecipe(Request req, Response res) {
         int id = foodDaoWithJDBC.getAll().size();
         String imageName = req.queryParams("imageName");
         if(imageName.equals("")) {
@@ -75,7 +75,7 @@ public class FoodController {
 
     }
 
-    public static ModelAndView renderDeleteRecipe(String id) {
+    public static ModelAndView DeleteRecipe(String id) {
         int intId = Integer.parseInt(id);
         foodDaoWithJDBC.delete(intId);
         Map params = new HashMap();
@@ -83,7 +83,7 @@ public class FoodController {
         return new ModelAndView(params, "index");
     }
 
-    public static ModelAndView rendeEditRecipe(String id) {
+    public static ModelAndView renderEditRecipe(String id) {
         int intId = Integer.parseInt(id);
         Map params = new HashMap();
         params.put("Food", foodDaoWithJDBC.findById(intId));
@@ -99,6 +99,12 @@ public class FoodController {
         params.put("Food", foodDaoWithJDBC.getAll());
         return new ModelAndView(params, "index");
 
+    }
+
+    public static ModelAndView search(String substring) {
+        Map params = new HashMap();
+        params.put("Food", foodDaoWithJDBC.search(substring));
+        return new ModelAndView(params, "index");
     }
 
 }

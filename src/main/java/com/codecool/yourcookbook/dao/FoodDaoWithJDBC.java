@@ -79,6 +79,15 @@ public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
         }
     }
 
+    @Override
+    public Stack<Food> search(String substring) {
+        String query = "SELECT * FROM food WHERE LOWER(name) LIKE '%" + substring + "%';";
+        Stack<Food> foodStack = getFoodStack(query);
+        System.out.println(foodStack);
+        return foodStack;
+
+    }
+
     public Food createFood(ResultSet resultSet) throws SQLException {
         Food food = new Food(
                 resultSet.getInt("id"),

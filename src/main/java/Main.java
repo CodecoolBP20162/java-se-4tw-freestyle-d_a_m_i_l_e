@@ -30,19 +30,23 @@ public class Main {
         });
 
         post("/recipe/0", (Request req, Response res) -> {
-            return new ThymeleafTemplateEngine().render(FoodController.renderAddNewRecipe(req, res));
+            return new ThymeleafTemplateEngine().render(FoodController.AddNewRecipe(req, res));
         });
 
         get("/delete/:id", (Request req, Response res) -> {
-            return new ThymeleafTemplateEngine().render(FoodController.renderDeleteRecipe(req.params(":id")));
+            return new ThymeleafTemplateEngine().render(FoodController.DeleteRecipe(req.params(":id")));
         });
 
         get("/recipe/:id", (Request req, Response res) -> {
-            return new ThymeleafTemplateEngine().render(FoodController.rendeEditRecipe(req.params(":id")));
+            return new ThymeleafTemplateEngine().render(FoodController.renderEditRecipe(req.params(":id")));
         });
 
         post("/recipe/:id", (Request req, Response res) -> {
             return new ThymeleafTemplateEngine().render(FoodController.UpdateRecipe(req.params(":id"), req));
+        });
+
+        post("/search/", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render(FoodController.search(req.queryParams("search")));
         });
 
     }

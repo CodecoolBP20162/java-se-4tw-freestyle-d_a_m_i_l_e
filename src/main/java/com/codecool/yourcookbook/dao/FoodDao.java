@@ -13,6 +13,7 @@ public interface FoodDao {
     void add(Food food);
     void delete(int id);
     void update(int id, Request req);
+    Stack<Food> search(String substring);
 
 
 

@@ -11,6 +11,9 @@
 
 <div id="section1" class="container-fluid">
     <div class="row">
+        <div th:if="${Food.size() == 0}" class="no-recipe alert alert-info">
+            <h2>You don't have any recipe here, <a href="/new_recipe/">CLICK HERE</a> to create a new one!</h2>
+        </div>
         <div class="col-md-3 col-sm-4" th:each="food, iterStat : ${Food}" >
             <div class="col-sm-12 box">
                 <div class="delete-button">
