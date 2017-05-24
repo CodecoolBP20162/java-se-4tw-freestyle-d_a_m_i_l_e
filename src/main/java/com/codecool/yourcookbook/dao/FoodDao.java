@@ -5,9 +5,11 @@ import java.util.Stack;
 
 public interface FoodDao {
 
-    public Stack<Food> getAll();
-    public Stack<Food> filterByCategory(String category);
-    public Food findById(int id);
+    Stack<Food> getAll();
+    Stack<Food> filterByCategory(String category);
+    Food findById(int id);
+    void add(Food food);
+
 
 
 }

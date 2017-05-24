@@ -3,8 +3,10 @@ package com.codecool.yourcookbook.dao;
 import com.codecool.yourcookbook.connection.JDBCConnection;
 import com.codecool.yourcookbook.model.Food;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Stack;
 
 public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
@@ -37,6 +39,23 @@ public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void add(Food food) {
+        String query = "INSERT INTO food (name, ingredients, recipe, category, imageName)" +
+                "VALUES ('" + food.getName() + "', '" + food.getIngredients() + "', '" + food.getRecipe() +
+                "', '" + food.getCategory() + "', '" + food.getImageName() + "');";
+
+        try (Connection connection = getConnection();
+             Statement statement = connection.createStatement();
+        ){
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Food createFood(ResultSet resultSet) throws SQLException {

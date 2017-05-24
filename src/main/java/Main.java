@@ -29,6 +29,10 @@ public class Main {
             return new ThymeleafTemplateEngine().render(FoodController.renderNewRecipe());
         });
 
+        post("/add/new_recipe/", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render(FoodController.renderAddNewRecipe(req, res));
+        });
+
     }
 
 }
