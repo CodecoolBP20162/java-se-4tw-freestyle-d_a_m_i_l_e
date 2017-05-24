@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navbar :: head">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<div th:replace="navbar :: header"></div>
+<!-- N A V B A R -->
+<nav th:replace="navbar :: copy"></nav>
+<!-- END OF  N A V B A R -->
+
+<div id="section1" class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-sm-4" th:each="food, iterStat : ${Food}" >
+            <div class="col-sm-12 box">
+                <div class="delete-button">
+                    <button type="button" class="close" style="color:red">
+                        <span>&times;</span>
+                    </button>
+                    <div class="confirm">
+                        <button class="btn btn-sm btn-default cancel">Cancel</button>
+                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+                <div class="box-header">
+                    <h3 th:text="${food.name}">Food name</h3>
+                </div>
+                <div class="box-body" data-toggle="tooltip" title="Click the image for the recipe!" >
+                    <a th:href="'/show_recipe/' + ${food.id}" th:id="${food.id}"><img th:src="'/img/' + ${food.imageName}" class="box-img img-rounded" alt="Food"/></a>
+                </div>
+                <div class="box-footer">
+                    <a href="#" class="btn btn-info btn-sm">Edit recipe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    $(document).ready(function(){
+        $('div.row').fadeIn('slow');
+        $('[data-toggle="tooltip"]').tooltip();
+        $('div.delete-button').click(function(){
+            $(this).children().slideDown('slow');
+        });
+        $('button.cancel').click(function(){
+            $(this).parent().slideUp('slow');
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

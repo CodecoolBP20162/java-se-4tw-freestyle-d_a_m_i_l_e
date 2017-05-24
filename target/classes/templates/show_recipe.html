@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navbar :: head">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<div th:replace="navbar :: header"></div>
+<!-- N A V B A R -->
+<nav th:replace="navbar :: copy"></nav>
+<!-- END OF  N A V B A R -->
+
+<div class="container-fluid">
+    <div class="row recipe-header" id='fade1' th:each="rec, iterStat : ${recipe}">
+        <h2 th:text="${rec.name}">Recipe Name</h2>
+        <div id='fade2' class="col-sm-6 div-picture">
+            <img th:src="'/img/' + ${rec.imageName}" alt="Image"/>
+        </div>
+        <div id='fade3' class="col-sm-6 div-recipe">
+            <h4>Ingredients</h4>
+            <p class="ingredients" th:text="${rec.ingredients}">ingredients}}</p>
+            <h4>Recipe</h4>
+            <p class="recipe" th:text="${rec.recipe}">recipe</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    $(document).ready(function(){
+        $("#fade1").fadeIn(1000);
+        $("#fade2").fadeIn(2000);
+        $("#fade3").fadeIn(3000);
+
+    });
+</script>
+</body>
+</html>

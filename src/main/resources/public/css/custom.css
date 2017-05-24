@@ -1,0 +1,55 @@
+body {
+        position: relative;
+    }
+.affix {
+    top:0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+.navbar {
+    margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+    position: relative;
+    top: 50px;
+}
+#section1 {padding-top:50px;height:500px; background-color: #fff;}
+.header {background-color:#14CCC1; height:150px;}
+.img-header {object-fit: cover; height: 95%}
+.box {height: 300px; margin-bottom: 10px; box-shadow: 3px 3px 5px  #09B2A8; border-radius: 20px;}
+.box-header { height: 75px; overflow: hidden}
+.box-header h3 {font-weight: bold; text-align:center}
+.box-body { height: 150px; text-align:center}
+.box-body img:hover { border-radius: 180px; opacity: 1; transition: 0.8s}
+.box-footer { height: 50px; text-align: center; padding-top: 15px}
+.box-img { object-fit: cover; height: 100%; opacity: 0.8}
+.row{display: none}
+.modal-header h4 { color:white}
+.confirm { 
+position: absolute;             
+display:none; 
+background-color: #fff; 
+height: 75px; 
+width: 90%; 
+}
+.delete-button {text-align: center}
+.cancel {}
+.no-recipe {text-align:center; background-color: #14CCC1}
+.no-recipe h2, a {color: white}
+.no-recipe a {text-decoration: underline}
+.no-recipe a:hover {color: #FF00D7}
+.flash-message {width:300px; margin:0 auto; margin-bottom:20px; border-radius: 20px}
+.recipe-header {background-color:#FF00D7; height:100px;}
+.recipe-header h2 { color: white; font-weight:bold; letter-spacing: 5px; text-align: center;}
+.div-picture { background-color: white; text-align: center; position:relative; margin-top:10px}
+.div-picture img { 
+    object-fit: cover; 
+    width: 100%;}
+.div-recipe { background-color: white; margin-top:10px;}
+.div-recipe p.ingredients { white-space: pre;}
+.div-recipe p.recipe { white-space: initial;}
+.div-recipe h4 { color: #FF00D7}
+#fade1 { display: none;}
+#fade2 { display: none;}
+#fade3 { display: none;}
