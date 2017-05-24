@@ -9,33 +9,33 @@
 <nav th:replace="navbar :: copy"></nav>
 <!-- END OF  N A V B A R -->
 <div id="section2" class="container-fluid" style="margin-top: 20px;">
-    <form class="form-horizontal" action="/add/new_recipe/" method="POST">
+    <form class="form-horizontal" th:action="'/recipe/' + ${Food.id}" method="POST">
         <fieldset>
             <legend th:text="${header}">HEADER</legend>
             <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">Name</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" name="name" rows="1" id="name" placeholder="The name of your recipe." required=""></textarea>
+                    <textarea th:text="${Food.name}" class="form-control" name="name" rows="1" id="name" placeholder="The name of your recipe." required=""></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="ingredients" class="col-lg-2 control-label">Ingredients</label>
                 <div class="col-lg-10">
-            <textarea class="form-control" name="ingredients" rows="2" id="ingredients"></textarea>
+            <textarea th:text="${Food.ingredients}" class="form-control" name="ingredients" rows="2" id="ingredients"></textarea>
                     <span class="help-block">Write every single ingredient in a new line!</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="recipe" class="col-lg-2 control-label">Recipe</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" name="recipe" rows="2" id="recipe" placeholder="Your recipe, step by step."></textarea>
+                    <textarea th:text="${Food.recipe}" class="form-control" name="recipe" rows="2" id="recipe" placeholder="Your recipe, step by step."></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="category" class="col-lg-2 control-label">Category</label>
                 <div class="col-lg-10">
                     <select class="form-control" name="category" id="category" required="">
-                        <option hidden=""></option>
+                        <option th:text="${Food.category}" hidden=""></option>
                         <option>Starter/Soup</option>
                         <option>Main course</option>
                         <option>Dessert</option>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="imageName" class="col-lg-2 control-label">Image</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" name="imageName" rows="1" id="imageName" placeholder="eg. Food.jpg"></textarea>
+                    <textarea th:text="${Food.imageName}" class="form-control" name="imageName" rows="1" id="imageName" placeholder="eg. Food.jpg"></textarea>
                 </div>
             </div>
             <div class="form-group">

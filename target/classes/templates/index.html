@@ -29,7 +29,7 @@
                     <a th:href="'/show_recipe/' + ${food.id}" th:id="${food.id}"><img th:src="'/img/' + ${food.imageName}" class="box-img img-rounded" alt="Food"/></a>
                 </div>
                 <div class="box-footer">
-                    <a href="#" class="btn btn-info btn-sm">Edit recipe</a>
+                    <a th:href="'/recipe/' + ${food.id}" class="btn btn-info btn-sm">Edit recipe</a>
                 </div>
             </div>
         </div>

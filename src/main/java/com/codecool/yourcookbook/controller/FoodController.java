@@ -48,6 +48,7 @@ public class FoodController {
 
     public static ModelAndView renderNewRecipe() {
         Map params = new HashMap();
+        params.put("Food", new Food());
         params.put("header", "New Recipe");
         params.put("button", "Create Recipe");
         return new ModelAndView(params, "form");
@@ -82,5 +83,22 @@ public class FoodController {
         return new ModelAndView(params, "index");
     }
 
+    public static ModelAndView rendeEditRecipe(String id) {
+        int intId = Integer.parseInt(id);
+        Map params = new HashMap();
+        params.put("Food", foodDaoWithJDBC.findById(intId));
+        params.put("header", "Edit Recipe");
+        params.put("button", "Update Recipe");
+        return new ModelAndView(params, "form");
+    }
+
+    public static ModelAndView UpdateRecipe(String id, Request req) {
+        int intId = Integer.parseInt(id);
+        foodDaoWithJDBC.update(intId, req);
+        Map params = new HashMap();
+        params.put("Food", foodDaoWithJDBC.getAll());
+        return new ModelAndView(params, "index");
+
+    }
 
 }

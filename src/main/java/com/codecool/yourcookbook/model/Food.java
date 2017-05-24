@@ -8,6 +8,8 @@ public class Food {
     private String category;
     private String imageName;
 
+    public Food(){};
+
     public Food(int id, String name, String ingredients, String recipe, String category, String imageName){
         this.id = id;
         this.name = name;

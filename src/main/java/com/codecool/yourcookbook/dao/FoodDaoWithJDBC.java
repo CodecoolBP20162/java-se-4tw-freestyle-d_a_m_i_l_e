@@ -3,10 +3,8 @@ package com.codecool.yourcookbook.dao;
 import com.codecool.yourcookbook.connection.JDBCConnection;
 import com.codecool.yourcookbook.model.Food;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Stack;
 
 public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
@@ -46,26 +44,36 @@ public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
         String query = "INSERT INTO food (name, ingredients, recipe, category, imageName)" +
                 "VALUES ('" + food.getName() + "', '" + food.getIngredients() + "', '" + food.getRecipe() +
                 "', '" + food.getCategory() + "', '" + food.getImageName() + "');";
-
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();
-        ){
-            statement.execute(query);
-
+        try {
+            executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public void delete(int id) {
         String query = "DELETE FROM food WHERE id = '" + id +"';";
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();
-        ){
-            statement.execute(query);
+        try {
+            executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void update(int id, spark.Request req) {
+        Food food = findById(id);
+        System.out.println(food.getName());
+        String query = "UPDATE food SET " +
+                "name = '" + req.queryParams("name") + "', " +
+                "ingredients = '" + req.queryParams("ingredients") + "', " +
+                "recipe = '" + req.queryParams("recipe") + "', " +
+                "category = '" + req.queryParams("category") + "', " +
+                "imageName = '" + req.queryParams("imageName") + "'" +
+                " WHERE id = '" + food.getId() + "';";
+        try {
+            executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
