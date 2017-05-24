@@ -58,6 +58,19 @@ public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
 
     }
 
+    @Override
+    public void delete(int id) {
+        String query = "DELETE FROM food WHERE id = '" + id +"';";
+        try (Connection connection = getConnection();
+             Statement statement = connection.createStatement();
+        ){
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Food createFood(ResultSet resultSet) throws SQLException {
         Food food = new Food(
                 resultSet.getInt("id"),

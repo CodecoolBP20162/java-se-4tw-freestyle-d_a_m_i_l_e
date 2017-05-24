@@ -55,20 +55,31 @@ public class FoodController {
 
     public static ModelAndView renderAddNewRecipe(Request req, Response res) {
         int id = foodDaoWithJDBC.getAll().size();
-
+        String imageName = req.queryParams("imageName");
+        if(imageName.equals("")) {
+            imageName = "yourcookbook.png";
+        }
         Food food = new Food(
                 id,
                 req.queryParams("name"),
                 req.queryParams("ingredients"),
                 req.queryParams("recipe"),
                 req.queryParams("category"),
-                req.queryParams("imageName")
+                imageName
                 );
         foodDaoWithJDBC.add(food);
         Map params = new HashMap();
         params.put("Food", foodDaoWithJDBC.getAll());
         return new ModelAndView(params, "index" );
 
+    }
+
+    public static ModelAndView renderDeleteRecipe(String id) {
+        int intId = Integer.parseInt(id);
+        foodDaoWithJDBC.delete(intId);
+        Map params = new HashMap();
+        params.put("Food", foodDaoWithJDBC.getAll());
+        return new ModelAndView(params, "index");
     }
 
 

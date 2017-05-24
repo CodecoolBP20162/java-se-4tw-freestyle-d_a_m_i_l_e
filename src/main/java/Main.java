@@ -33,6 +33,10 @@ public class Main {
             return new ThymeleafTemplateEngine().render(FoodController.renderAddNewRecipe(req, res));
         });
 
+        get("/delete/:id", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render(FoodController.renderDeleteRecipe(req.params(":id")));
+        });
+
     }
 
 }

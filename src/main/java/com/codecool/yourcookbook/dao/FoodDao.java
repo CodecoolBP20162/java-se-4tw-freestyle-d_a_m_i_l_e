@@ -9,6 +9,7 @@ public interface FoodDao {
     Stack<Food> filterByCategory(String category);
     Food findById(int id);
     void add(Food food);
+    void delete(int id);
 
 
 
