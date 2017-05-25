@@ -7,6 +7,8 @@
 
 # Connection txt file #
 user.txt
+src/main/resources/connection/user.txt
+target/classes/connection/user.txt
 
 # User-specific stuff:
 .idea/**/workspace.xml
