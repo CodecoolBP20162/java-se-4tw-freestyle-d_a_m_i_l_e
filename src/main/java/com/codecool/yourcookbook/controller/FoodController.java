@@ -7,7 +7,6 @@ import spark.Response;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
 public class FoodController {
 
@@ -27,7 +26,6 @@ public class FoodController {
     }
 
     public static ModelAndView renderFilterByCategory(String category) {
-        System.out.println(category);
         switch (category) {
             case "main_course":
                 category = "Main course";

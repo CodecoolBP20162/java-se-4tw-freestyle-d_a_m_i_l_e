@@ -2,12 +2,15 @@ package com.codecool.yourcookbook.dao;
 
 import com.codecool.yourcookbook.connection.JDBCConnection;
 import com.codecool.yourcookbook.model.Food;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Stack;
 
 public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
+    private static final Logger logger = LoggerFactory.getLogger(FoodDaoWithJDBC.class);
 
     @Override
     public Stack<Food> getAll(){
