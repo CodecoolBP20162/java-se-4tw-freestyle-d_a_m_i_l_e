@@ -61,7 +61,7 @@ public abstract class JDBCConnection {
         try {
             while ((line = in.readLine()) != null) {
                 counter++;
-                if(counter == textLine) {
+                if (counter == textLine) {
                     UserOrPassword = line;
                 }
             }

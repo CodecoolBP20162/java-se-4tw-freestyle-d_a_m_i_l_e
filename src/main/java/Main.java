@@ -4,8 +4,15 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.*;
 
+/**
+ * <h1>Main class</h1> for running the program
+ */
 public class Main {
-
+    /**
+     *Uses Thymeleaf to render html pages and includes the settings of the server
+     *
+     * @param args Contains the supplied command-line arguments as an array of String objects
+     */
     public static void main(String[] args) {
 
         // default server settings
