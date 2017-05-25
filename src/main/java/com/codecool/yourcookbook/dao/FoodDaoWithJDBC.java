@@ -2,6 +2,8 @@ package com.codecool.yourcookbook.dao;
 
 import com.codecool.yourcookbook.connection.JDBCConnection;
 import com.codecool.yourcookbook.model.Food;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,14 +12,17 @@ import java.util.Stack;
 /**
  * <h1>FoodDaoWithJDBC class</h1> for creating queries. <p>It implements the FoodDao interface and inherits from the JDBCConnection class</p>
  */
-public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
+public class FoodDaoWithJDBC extends JDBCConnection implements FoodDao {
+    private static final Logger logger = LoggerFactory.getLogger(FoodDaoWithJDBC.class);
+
     /**
      * Gets all Food instances
      *
      * @return a Stack with all Food instances
      */
+
     @Override
-    public Stack<Food> getAll(){
+    public Stack<Food> getAll() {
         String query = "SELECT * FROM food ORDER BY name ASC;";
         Stack<Food> allFood = getFoodStack(query);
         return allFood;
@@ -82,7 +87,7 @@ public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
      */
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM food WHERE id = '" + id +"';";
+        String query = "DELETE FROM food WHERE id = '" + id + "';";
         try {
             executeQuery(query);
         } catch (SQLException e) {
@@ -93,7 +98,7 @@ public class FoodDaoWithJDBC  extends JDBCConnection implements FoodDao {
     /**
      * Updates the Food instance with the given ID in the database
      *
-     * @param id ID of the Food instance to be updated
+     * @param id  ID of the Food instance to be updated
      * @param req the information about the HTTP request
      */
     @Override
