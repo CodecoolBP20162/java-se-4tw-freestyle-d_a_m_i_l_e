@@ -131,7 +131,7 @@ public class Food {
     /**
      * Sets the category of the Food instance
      */
-    public void setCategory() {
+    public void setCategory(String category) {
         this.category = category;
     }
 
