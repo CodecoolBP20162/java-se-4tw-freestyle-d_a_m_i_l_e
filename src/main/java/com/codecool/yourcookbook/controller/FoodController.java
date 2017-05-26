@@ -1,5 +1,6 @@
 package com.codecool.yourcookbook.controller;
 
+import com.codecool.yourcookbook.dao.FoodDao;
 import com.codecool.yourcookbook.dao.FoodDaoWithJDBC;
 import com.codecool.yourcookbook.model.Food;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import java.util.Map;
 public class FoodController {
     private static final Logger logger = LoggerFactory.getLogger(FoodController.class);
 
-    static FoodDaoWithJDBC foodDaoWithJDBC = new FoodDaoWithJDBC();
+    static FoodDao foodDao = new FoodDaoWithJDBC();
 
     /**
      * Renders all the recipes
@@ -26,7 +27,7 @@ public class FoodController {
      */
     public static ModelAndView renderAllRecipes() {
         Map params = new HashMap<>();
-        params.put("Food", foodDaoWithJDBC.getAll());
+        params.put("Food", foodDao.getAll());
         logger.debug("Food instances had been added successfully.");
         return new ModelAndView(params, "index");
     }
@@ -40,7 +41,7 @@ public class FoodController {
     public static ModelAndView renderShowRecipe(String id) {
         int intId = Integer.parseInt(id);
         Map params = new HashMap();
-        params.put("recipe", foodDaoWithJDBC.findById(intId));
+        params.put("recipe", foodDao.findById(intId));
         logger.debug("Food instances with ID {} had been added successfully.", id);
         return new ModelAndView(params, "show_recipe");
     }
@@ -69,7 +70,7 @@ public class FoodController {
                 renderNewRecipe();
         }
         Map params = new HashMap();
-        params.put("Food", foodDaoWithJDBC.filterByCategory(category));
+        params.put("Food", foodDao.filterByCategory(category));
         logger.debug("Filtering by Food category '{}' has been made successfully", category);
         return new ModelAndView(params, "index");
     }
@@ -95,7 +96,7 @@ public class FoodController {
      * @return An instance with the provided HashMap where the newly added Food instances are included and the "index" view name
      */
     public static ModelAndView AddNewRecipe(Request req, Response res) {
-        int id = foodDaoWithJDBC.getAll().size();
+        int id = foodDao.getAll().size();
         String imageName = req.queryParams("imageName");
         if (imageName.equals("")) {
             logger.debug("User added new  recipe but didn't upload an image.");
@@ -109,10 +110,10 @@ public class FoodController {
                 req.queryParams("category"),
                 imageName
         );
-        foodDaoWithJDBC.add(food);
+        foodDao.add(food);
         logger.debug("New recipe has been added. Details: {}", food);
         Map params = new HashMap();
-        params.put("Food", foodDaoWithJDBC.getAll());
+        params.put("Food", foodDao.getAll());
         logger.debug("Recipes are successfully updated with the new recipe.");
         return new ModelAndView(params, "index");
     }
@@ -125,10 +126,10 @@ public class FoodController {
      */
     public static ModelAndView DeleteRecipe(String id) {
         int intId = Integer.parseInt(id);
-        foodDaoWithJDBC.delete(intId);
+        foodDao.delete(intId);
         logger.debug("Food with ID '{}' has been deleted by the user", intId);
         Map params = new HashMap();
-        params.put("Food", foodDaoWithJDBC.getAll());
+        params.put("Food", foodDao.getAll());
         logger.debug("Food instances have been updated after the deletion");
         return new ModelAndView(params, "index");
     }
@@ -142,7 +143,7 @@ public class FoodController {
     public static ModelAndView renderEditRecipe(String id) {
         int intId = Integer.parseInt(id);
         Map params = new HashMap();
-        params.put("Food", foodDaoWithJDBC.findById(intId));
+        params.put("Food", foodDao.findById(intId));
         params.put("header", "Edit Recipe");
         params.put("button", "Update Recipe");
         logger.debug("Recipe with ID '{}' has been chosen to edit", intId);
@@ -158,10 +159,10 @@ public class FoodController {
      */
     public static ModelAndView UpdateRecipe(String id, Request req) {
         int intId = Integer.parseInt(id);
-        foodDaoWithJDBC.update(intId, req);
+        foodDao.update(intId, req);
         logger.debug("Recipe with ID '{}' has been updated by the user", intId);
         Map params = new HashMap();
-        params.put("Food", foodDaoWithJDBC.getAll());
+        params.put("Food", foodDao.getAll());
         logger.debug("Food instances have been are now updated after the update");
         return new ModelAndView(params, "index");
 
@@ -175,7 +176,7 @@ public class FoodController {
      */
     public static ModelAndView search(String substring) {
         Map params = new HashMap();
-        params.put("Food", foodDaoWithJDBC.search(substring));
+        params.put("Food", foodDao.search(substring));
         logger.debug("User searched for recipes which contain '{}'", substring);
         return new ModelAndView(params, "index");
     }
